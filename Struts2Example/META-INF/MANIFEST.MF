@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Struts2Example
+Bundle-SymbolicName: Struts2Example
+Bundle-Version: 1.0.0.qualifier

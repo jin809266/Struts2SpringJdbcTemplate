@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<!-- namespace -> example under webapp folder start and / = ServletContext(projectName)-->
+	<!-- package name -> name 可以隨便命名-->
+	<!-- user package action -->
+	<package name="default" extends="struts-default">
+		<!--1. 前端頁面form action: welcome 會做此action 並呼叫welcomeUserAction -->
+		<action name="Welcome" class="com.lin.user.action.WelcomeUserAction">
+		    <!-- action return 字串回來對應 -->
+		    <result>/user/pages/queryUser.jsp</result> <!-- result name 沒有寫 預設是SUCCESS -->
+			<result name="queryBtn">/user/pages/welcome_user.jsp</result>
+		</action>
+	</package>
+	<!-- home package action -->
+	<package name="home" extends="struts-default">
+		<action name="Home" class="com.lin.home.action.HomeAction">
+		    <result>/home/pages/home.jsp</result> <!-- result name 沒有寫 預設是name = SUCCESS -->
+		</action>
+	</package>
+
+</struts>
