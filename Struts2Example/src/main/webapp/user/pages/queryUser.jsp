@@ -12,6 +12,9 @@ margin-bottom:8px;
 .queryCss{
 background-color:#FFCCCC;
 }
+table, th, td{
+border: 1px solid black;
+}
 </style>
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -24,7 +27,7 @@ $(document).ready(function(){
     	}
     });
     	
-    $("#confrimBtn").click(function(e){
+    $("#queryEname").click(function(e){
      e.preventDefault();
      var errMsg = '';
      if($.trim($("#ename").val()) === ''){
@@ -45,18 +48,21 @@ $(document).ready(function(){
     		<s:actionerror cssClass="warning"/>
     	</div>
     </s:if>
-	<div class="queryCss" style="margin:0 1% 0 1%">EMP管理頁面</div>
+	<div class="queryCss" style="margin:0 1% 0 1%">EMP管理頁面</div><br/>
 	<form action="" method="POST">
-	<table width="98%" align="center" border="1">
+	<table width="100%">
 	   <tr>
-	     <th width="20%">員工查詢</th>
-	     <td>ENAME：&nbsp;
+	     <th width="20%">員工姓名</th>
+	     <td>&nbsp;&nbsp;ENAME：&nbsp;
 <%-- 	  <s:textfield name="uservo.ename" id="ename"/> output 輸出結果 => <input type="text" name="uservo.ename" id="ename"/>--%>
-	     <input type="text" name="uservo.ename" id="ename"/>&nbsp;<input type="button" value="查詢" id="confrimBtn"/>
+	     <input type="text" name="uservo.ename" id="ename"/>&nbsp;<input type="button" value="查詢" id="queryEname"/>
 	     </td>
 	   </tr>
 	   <tr>
-	     <th>TESTA</th>
+	     <th width="20%">工作</th>
+	     <td>&nbsp;&nbsp;JOB：&nbsp;
+	     <input type="text" name="uservo.job" id="job"/>&nbsp;<input type="button" value="查詢" id="queryJob"/>
+	  	 </td>
 	   </tr>
 	</table>
 	</form>
