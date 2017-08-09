@@ -27,7 +27,7 @@ $(document).ready(function(){
 		$("form").attr("action","Welcome!deleteByDeptno").submit();
 	});
 	
-	$(".updateBtn").click(function(){
+	$(".editBtn").click(function(){
 		var index = $(this).attr('index');
 		var job = $("#job_"+index).html();
 		var hiredate = $("#hiredate_"+index).html();
@@ -51,6 +51,21 @@ $(document).ready(function(){
 		$("#deptno1").val(data.userVo.deptno);
 		},"json");
 	});
+	
+	$("#updateBtn").click(function(){
+		var job = $.trim($("#job1").val());
+		var hiredate = $.trim($("#hiredate1").val());
+		var sal = $.trim($("#sal1").val());
+		var comm = $.trim($("#comm1").val());
+		var deptno = $.trim($("#deptno1").val());
+		$("#job").val(job);
+		$("#hiredate").val(hiredate);
+		$("#sal").val(sal);
+		$("#comm").val(comm);
+		$("#deptno").val(deptno);
+		$("form").attr("action","Welcome!update").submit();
+	});
+	
 });
 
 </script>
@@ -98,7 +113,7 @@ $(document).ready(function(){
 		      <td width="14%" index='<s:property value="#s.index"/>' id='sal_<s:property value="#s.index"/>'><s:property value="#r.sal" /></td>
 		      <td width="12%" index='<s:property value="#s.index"/>' id='comm_<s:property value="#s.index"/>'><s:property value="#r.comm" /></td>
 		      <td width="10%" index='<s:property value="#s.index"/>' id='deptno_<s:property value="#s.index"/>'><s:property value="#r.deptno" /></td>
-		      <td width="15%"><input type="button" index='<s:property value="#s.index"/>' class="updateBtn" value="編輯"></td>
+		      <td width="15%"><input type="button" index='<s:property value="#s.index"/>' class="editBtn" value="編輯"></td>
 		      <td width="15%"><input type="button" index='<s:property value="#s.index"/>' class="cleanBtn" value="清除"></td>
 		      </tr>
 		      </s:iterator>
@@ -116,11 +131,28 @@ $(document).ready(function(){
 	
 	<div id="testA" style="display:none">
 	<h3>編輯修改欄位如下</h3>
-	<h5>JOB<input type="text" name="" value="" id="job1">
-	<h5>HIREDATE<input type="text" name="" value="" id="hiredate1">
-	<h5>SAL<input type="text" name="" value="" id="sal1">
-	<h5>COMM</h5><input type="text" name="" value="" id="comm1">
-	<h5>DEPTNO</h5><input type="text" name="" value="" id="deptno1">
+	<table>
+	<tr>
+	<thead>
+	<th>JOB</th>
+	<th>HIREDATE</th>
+	<th>SAL</th>
+	<th>COMM</th>
+	<th>DEPTNO</th>
+	<th></th>
+	</thead>
+	</tr>
+	<tr>
+	<tbody>
+	<td><input type="text" name="" value="" id="job1"></td>
+	<td><input type="text" name="" value="" id="hiredate1"></td>
+	<td><input type="text" name="" value="" id="sal1"></td>
+	<td><input type="text" name="" value="" id="comm1"></td>
+	<td><input type="text" name="" value="" id="deptno1"></td>
+	<td><input type="button" id="updateBtn" value="確認"/></td>
+	</tbody>
+	</tr>
+	</table>
 	</div>
 </body>
 </html>

@@ -23,6 +23,7 @@ public class WelcomeUserAction extends ActionSupport {
 	private final static String QUERY_BY_JOB = "queryByJob";
 	private final static String DELETE_BY_DEPTNO = "deleteByDeptno";
 	private final static String EDIT = "edit";
+	private final static String UPDATE = "update";
 	// all struts logic here
 	public String execute() {
 		return SUCCESS;
@@ -63,6 +64,10 @@ public class WelcomeUserAction extends ActionSupport {
 	public String edit(){
 		setUserVo(userserivce.queryBySal(String.valueOf(userVo.getSal())));
 		return EDIT;
+	}
+	
+	public String update(){
+		return UPDATE;
 	}
 	
 	// future create common class method
