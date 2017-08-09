@@ -1,5 +1,7 @@
 package com.lin.user.dao.impl;
 
+import java.util.List;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,6 +52,39 @@ public class UserDaoImpl implements UserDao {
 	 * 
 	 * return customer; }
 	 **/
+
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<UserVo> queryByJob(String job) {
+		String sql = "SELECT * FROM EMP2 WHERE JOB = ?";
+		try {
+			List<UserVo> list = (List<UserVo>) jdbcTemplate.query(sql, new Object[] { job },
+					new BeanPropertyRowMapper(UserVo.class));
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void deleteByDeptNo(String deptno) {
+		String sql = "DELETE FROM EMP2 WHERE DEPTNO = ?";
+		jdbcTemplate.update(sql, new Object[] { deptno });
+	}
+
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public UserVo queryBySal(String sal) {
+		String sql = "SELECT * FROM EMP2 WHERE SAL = ?";
+		try {
+			UserVo userDto = (UserVo) jdbcTemplate.queryForObject(sql, new Object[] { sal },
+					new BeanPropertyRowMapper(UserVo.class));
+			return userDto;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}

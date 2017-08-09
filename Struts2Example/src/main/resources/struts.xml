@@ -5,21 +5,28 @@
 
 <struts>
 	<constant name="struts.devMode" value="false" />
-	<!-- namespace -> example under webapp folder start and / = ServletContext(projectName)-->
-	<!-- package name -> name 可以隨便命名-->
+
+	<!-- namespace -> example under webapp folder start and / = ServletContext(projectName) -->
+	<!-- package name -> name 可以隨便命名 -->
 	<!-- user package action -->
-	<package name="default" extends="struts-default">
-		<!--1. 前端頁面form action: welcome 會做此action 並呼叫welcomeUserAction -->
+	<package name="default" extends="json-default">
+		<result-types>
+			<result-type class="org.apache.struts2.json.JSONResult" name="json"></result-type>
+		</result-types>
 		<action name="Welcome" class="com.lin.user.action.WelcomeUserAction">
-		    <!-- action return 字串回來對應 -->
-		    <result>/user/pages/queryUser.jsp</result> <!-- result name 沒有寫 預設是SUCCESS -->
-			<result name="queryBtn">/user/pages/welcome_user.jsp</result>
+			<result>/user/pages/queryUser.jsp</result>
+			<result name="queryByEname">/user/pages/welcome_user.jsp</result>
+			<result name="queryByJob">/user/pages/welcome_user.jsp</result>
+			<result name="deleteByDeptno">/user/pages/welcome_user.jsp</result>
+			<result name="edit" type="json">
+			<param name="userVo">userVo</param>
+			</result>
 		</action>
 	</package>
 	<!-- home package action -->
 	<package name="home" extends="struts-default">
 		<action name="Home" class="com.lin.home.action.HomeAction">
-		    <result>/home/pages/home.jsp</result> <!-- result name 沒有寫 預設是name = SUCCESS -->
+			<result>/home/pages/home.jsp</result>
 		</action>
 	</package>
 
