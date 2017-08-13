@@ -23,6 +23,7 @@
 			</result>
 			<result name="update">/user/pages/welcome_user.jsp</result>
 			<result name="previousPage">/user/pages/queryUser.jsp</result>
+			<result name="backHomePage">/home/pages/home.jsp</result>
 		</action>
 	</package>
 	<!-- home package action -->

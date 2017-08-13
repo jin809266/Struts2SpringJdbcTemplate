@@ -25,6 +25,7 @@ public class WelcomeUserAction extends ActionSupport {
 	private final static String EDIT = "edit";
 	private final static String UPDATE = "update";
 	private final static String PREVIOUSPAGE = "previousPage";
+	private final static String BACKHOMEPAGE = "backHomePage";
 
 	// all struts logic here
 	public String execute() {
@@ -78,7 +79,7 @@ public class WelcomeUserAction extends ActionSupport {
 		// confirm return updated Data Access Object
 		setUserVo(userserivce.queryBySal(userVo));
 		if (userVo == null) {
-			addActionError("查無資料");
+			addActionError("修改失敗");
 			return execute();
 		}
 		return UPDATE;
@@ -86,6 +87,10 @@ public class WelcomeUserAction extends ActionSupport {
 
 	public String previousPage() {
 		return PREVIOUSPAGE;
+	}
+	
+	public String backHomePage(){
+		return BACKHOMEPAGE;
 	}
 
 	// future create common class method

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,23 +37,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVo queryBySal(UserVo userVo) {
+		if(StringUtils.isEmpty(String.valueOf(userVo.getSal())) || userVo.getSal() == null){
+			userVo.setSal(userdao.queryByhiredate(userVo.getHiredate()).getSal());
+		}
 		return userdao.queryBySal(userVo);
 	}
 
 	@Override
 	public int update(UserVo uservo) {
-		UserVo vo = new UserVo();
-		if(uservo.getComm().equals("")){
-			vo.setComm(userdao.queryByhiredate(uservo.getHiredate()).getComm());
+		if(StringUtils.isEmpty(String.valueOf(uservo.getComm())) || uservo.getComm() == null){
+			uservo.setComm(0);
 		}
-		if(uservo.getSal().equals("")){
-			vo.setSal(userdao.queryByhiredate(uservo.getHiredate()).getSal());
+		if(StringUtils.isEmpty(String.valueOf(uservo.getSal())) || uservo.getSal() == null){
+			uservo.setSal(0);
 		}
-		if(uservo.getDeptno().equals("")){
-			vo.setDeptno(userdao.queryByhiredate(uservo.getHiredate()).getDeptno());
+		if(StringUtils.isEmpty(String.valueOf(uservo.getDeptno())) || uservo.getDeptno() == null){
+			uservo.setDeptno(userdao.queryByhiredate(uservo.getHiredate()).getDeptno());
 		}
-		if(uservo.getJob().equals("")){
-			vo.setJob(userdao.queryByhiredate(uservo.getHiredate()).getJob());
+		if(StringUtils.isEmpty(uservo.getJob()) || uservo.getJob() == null){
+			uservo.setJob("");
 		}
 		return userdao.update(uservo);
 	}

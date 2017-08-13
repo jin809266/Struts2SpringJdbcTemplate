@@ -11,6 +11,8 @@ margin-bottom:8px;
 }
 .queryCss{
 background-color:#FFCCCC;
+float:left;
+position:absolute;
 }
 table, th, td{
 border: 1px solid black;
@@ -56,29 +58,37 @@ $(document).ready(function(){
        	 }
      });
     
+    $("#backHomePage").click(function(){
+    	$("form").attr("action","Welcome!backHomePage").submit();
+    });
+    
 });
 </script>
 </head>
 <body background="<s:url value="/image/blueGround.jpg"/>">
-	<div class="queryCss" style="margin:0 1% 0 1%">EMP管理頁面</div><br/>
+<br/>
+<br/>
+	<div class="queryCss"><a href="#" id="backHomePage">EMP管理頁面</a></div><br/>
 	<s:if test="hasActionErrors()">
 		<div class="errors">
     		<s:actionerror cssClass="warning"/>
     	</div>
     </s:if>
 	<form action="" method="POST">
-	<table width="98%">
+	<table width="40%">
 	   <tr>
 	     <th width="20%">員工姓名</th>
-	     <td>&nbsp;&nbsp;ENAME：&nbsp;
+	     <td>&nbsp;&nbsp;ENAME&nbsp;
 <%-- 	  <s:textfield name="uservo.ename" id="ename"/> output 輸出結果 => <input type="text" name="uservo.ename" id="ename"/>--%>
 	     <input type="text" name="userVo.ename" id="ename"/>&nbsp;<input type="button" value="查詢" id="queryEname" class="btn-success"/>
+	     (僅能查詢/無法修改)
 	     </td>
 	   </tr>
 	   <tr>
 	     <th width="20%">工作</th>
-	     <td>&nbsp;&nbsp;JOB：&nbsp;
+	     <td>&nbsp;&nbsp;JOB&nbsp;
 	     <input type="text" name="userVo.job" id="job"/>&nbsp;<input type="button" value="查詢" id="queryJob" class="btn-success"/>
+	  	 (可查詢/修改)
 	  	 </td>
 	   </tr>
 	</table>
