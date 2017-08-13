@@ -29,7 +29,7 @@ $(document).ready(function(){
 });
 	
 </script>
-<body>
+<body background="<s:url value="/image/blueGround.jpg"/>">
 <div class="container-fluid">
   <div class="row">
 	<div>

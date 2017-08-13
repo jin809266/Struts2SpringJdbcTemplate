@@ -1,5 +1,6 @@
 package com.lin.user.dao.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -74,10 +75,35 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public UserVo queryBySal(String sal) {
-		String sql = "SELECT * FROM EMP2 WHERE SAL = ?";
+	public UserVo queryBySal(UserVo userVo) {
+		String sql = "SELECT * FROM EMP2 WHERE SAL = ? AND HIREDATE = ?";
 		try {
-			UserVo userDto = (UserVo) jdbcTemplate.queryForObject(sql, new Object[] { sal },
+			UserVo userDto = (UserVo) jdbcTemplate.queryForObject(sql, new Object[] { userVo.getSal(), userVo.getHiredate() },
+					new BeanPropertyRowMapper(UserVo.class));
+			return userDto;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public int update(UserVo uservo) {
+		// String sql = "UPDATE EMP2 SET DEPTNO = ? , JOB = ? , COMM = ? , JOB =
+		// ?";
+		StringBuilder sql2 = new StringBuilder();
+		sql2.append("UPDATE EMP2 SET DEPTNO = ? , JOB = ? , COMM = ? , SAL = ? ");
+		sql2.append("WHERE HIREDATE = ?");
+		jdbcTemplate.update(sql2.toString(), new Object[] { uservo.getDeptno(), uservo.getJob(), uservo.getComm(),
+				uservo.getSal(), uservo.getHiredate() });
+		return 0;
+	}
+
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public UserVo queryByhiredate(String hiredate) {
+		String sql = "SELECT * FROM EMP2 WHERE HIREDATE = ?";
+		try {
+			UserVo userDto = (UserVo) jdbcTemplate.queryForObject(sql, new Object[] { hiredate },
 					new BeanPropertyRowMapper(UserVo.class));
 			return userDto;
 		} catch (EmptyResultDataAccessException e) {
@@ -88,5 +114,4 @@ public class UserDaoImpl implements UserDao {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
 }

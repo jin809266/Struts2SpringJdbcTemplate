@@ -12,5 +12,9 @@ public interface UserDao {
 	
 	public void deleteByDeptNo(String deptno);
 
-	public UserVo queryBySal(String sal);
+	public UserVo queryBySal(UserVo userVo);
+	
+	public int update(UserVo uservo);
+	
+	public UserVo queryByhiredate(String hiredate);
 }

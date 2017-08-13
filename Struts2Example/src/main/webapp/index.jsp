@@ -13,7 +13,7 @@ $(document).ready(function(){
 	   });
 	});
 </script>
-<body>
+<body background="<s:url value="/image/blueGround.jpg"/>">
   <a href="#" id="openHomePage">請點選此連結至首頁</a>
 </body>
 </html>

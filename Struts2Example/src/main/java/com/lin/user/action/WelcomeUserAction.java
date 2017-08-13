@@ -24,15 +24,17 @@ public class WelcomeUserAction extends ActionSupport {
 	private final static String DELETE_BY_DEPTNO = "deleteByDeptno";
 	private final static String EDIT = "edit";
 	private final static String UPDATE = "update";
+	private final static String PREVIOUSPAGE = "previousPage";
+
 	// all struts logic here
 	public String execute() {
 		return SUCCESS;
 	}
 
-	public void initialData(){
-	// some view data prepare in this	
+	public void initialData() {
+		// some view data prepare in this
 	}
-	
+
 	public String queryByEname() {
 		if (StringUtils.isNotEmpty(userVo.getEname())) {
 			setUserVo(userserivce.queryByEname(userVo.getEname()));
@@ -43,8 +45,8 @@ public class WelcomeUserAction extends ActionSupport {
 		}
 		return QUERY_BY_ENAME;
 	}
-	
-	public String queryByJob(){
+
+	public String queryByJob() {
 		if (StringUtils.isNotEmpty(userVo.getJob())) {
 			setUserList(userserivce.queryByJob(userVo.getJob()));
 		}
@@ -54,27 +56,43 @@ public class WelcomeUserAction extends ActionSupport {
 		}
 		return QUERY_BY_JOB;
 	}
-	
-	public String deleteByDeptno(){
+
+	public String deleteByDeptno() {
 		userserivce.deleteByDeptNo(String.valueOf(userVo.getDeptno()));
 		addActionMessage("已刪除");
 		return DELETE_BY_DEPTNO;
 	}
-	
-	public String edit(){
-		setUserVo(userserivce.queryBySal(String.valueOf(userVo.getSal())));
+
+	public String edit() {
+		setUserVo(userserivce.queryBySal(userVo));
+		if (userVo == null) {
+			addActionError("查無資料");
+			return execute();
+		}
 		return EDIT;
 	}
-	
-	public String update(){
+
+	public String update() {
+		userserivce.update(userVo);
+		addActionMessage("已修改");
+		// confirm return updated Data Access Object
+		setUserVo(userserivce.queryBySal(userVo));
+		if (userVo == null) {
+			addActionError("查無資料");
+			return execute();
+		}
 		return UPDATE;
 	}
-	
+
+	public String previousPage() {
+		return PREVIOUSPAGE;
+	}
+
 	// future create common class method
-	public String getActionMethodName(){
+	public String getActionMethodName() {
 		return ActionContext.getContext().getActionInvocation().getProxy().getMethod();
 	}
-	
+
 	public List<UserVo> getUserList() {
 		return userList;
 	}

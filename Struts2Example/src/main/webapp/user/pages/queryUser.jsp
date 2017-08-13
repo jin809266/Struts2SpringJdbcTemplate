@@ -16,7 +16,7 @@ table, th, td{
 border: 1px solid black;
 }
 </style>
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="<s:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -59,7 +59,7 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body>
+<body background="<s:url value="/image/blueGround.jpg"/>">
 	<div class="queryCss" style="margin:0 1% 0 1%">EMP管理頁面</div><br/>
 	<s:if test="hasActionErrors()">
 		<div class="errors">
@@ -72,13 +72,13 @@ $(document).ready(function(){
 	     <th width="20%">員工姓名</th>
 	     <td>&nbsp;&nbsp;ENAME：&nbsp;
 <%-- 	  <s:textfield name="uservo.ename" id="ename"/> output 輸出結果 => <input type="text" name="uservo.ename" id="ename"/>--%>
-	     <input type="text" name="userVo.ename" id="ename"/>&nbsp;<input type="button" value="查詢" id="queryEname"/>
+	     <input type="text" name="userVo.ename" id="ename"/>&nbsp;<input type="button" value="查詢" id="queryEname" class="btn-success"/>
 	     </td>
 	   </tr>
 	   <tr>
 	     <th width="20%">工作</th>
 	     <td>&nbsp;&nbsp;JOB：&nbsp;
-	     <input type="text" name="userVo.job" id="job"/>&nbsp;<input type="button" value="查詢" id="queryJob"/>
+	     <input type="text" name="userVo.job" id="job"/>&nbsp;<input type="button" value="查詢" id="queryJob" class="btn-success"/>
 	  	 </td>
 	   </tr>
 	</table>

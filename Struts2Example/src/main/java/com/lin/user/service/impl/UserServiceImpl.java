@@ -35,8 +35,26 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVo queryBySal(String sal) {
-		return userdao.queryBySal(sal);
+	public UserVo queryBySal(UserVo userVo) {
+		return userdao.queryBySal(userVo);
+	}
+
+	@Override
+	public int update(UserVo uservo) {
+		UserVo vo = new UserVo();
+		if(uservo.getComm().equals("")){
+			vo.setComm(userdao.queryByhiredate(uservo.getHiredate()).getComm());
+		}
+		if(uservo.getSal().equals("")){
+			vo.setSal(userdao.queryByhiredate(uservo.getHiredate()).getSal());
+		}
+		if(uservo.getDeptno().equals("")){
+			vo.setDeptno(userdao.queryByhiredate(uservo.getHiredate()).getDeptno());
+		}
+		if(uservo.getJob().equals("")){
+			vo.setJob(userdao.queryByhiredate(uservo.getHiredate()).getJob());
+		}
+		return userdao.update(uservo);
 	}
 
 }
